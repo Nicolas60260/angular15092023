@@ -1,0 +1,45 @@
+<title>Gestion Annonces</title>
+<table>
+    <tr>
+        <td>Id</td>
+        <td>Titre</td>
+        <td>Description</td>
+        <td>Image</td>
+        <td>Date publication</td>
+        <td>Date expiration</td>
+        <td>Statut</td>
+        <td>Id Catégorie</td>
+        <td>Nom Catégorie</td>
+        
+    </tr>
+    <tr *ngFor = "let a of listeAnnonce" >
+        <td>{{a.id}}</td>
+        <td>{{a.titre}}</td>
+        <td>{{a.description}}</td>
+        <td>{{a.image}}</td>
+        <td>{{a.datePublication}}</td>
+        <td>{{a.dateExpiration}}</td>
+        <td>{{a.statut}}</td>
+        <td *ngIf="a.categorie!=null; else mi1">{{a.categorie.id}}</td><ng-template #mi1> <td>Pas de categorie associée</td></ng-template>
+        <td *ngIf="a.categorie!=null; else mi2">{{a.categorie.nomCategorie}}</td><ng-template #mi2> <td>Pas de categorie associée</td></ng-template>
+      
+    </tr>
+</table>
+
+<form (ngSubmit)="ajouterAnnonce()">
+    id : <input type="text" name="id" [(ngModel)]="AnnonceAAjouter.id"> 
+    Titre : <input type="text" name="titre" [(ngModel)]="AnnonceAAjouter.titre">
+    Description : <input type="text" name="description" [(ngModel)]="AnnonceAAjouter.description">
+    Image : <input type="text" name="image" [(ngModel)]="AnnonceAAjouter.image">
+    Date publication : <input type="text" name="age" [(ngModel)]="AnnonceAAjouter.datePublication">
+    Date expiration : <input type="text" name="age" [(ngModel)]="AnnonceAAjouter.dateExpiration">
+    Statut : <input type="text" name="age" [(ngModel)]="AnnonceAAjouter.statut">
+    Catégorie : 
+
+    <select class="form-select" aria-label="Default select example" [(ngModel)]="AnnonceAAjouter.categorie.id" name="something">
+        <option *ngFor = "let c of listeCategorie" [value]="c.id" >{{c.nomCategorie}}</option>
+      </select>
+    <br>
+    <button type="submit">Ajouter Annonce</button>
+</form>
+

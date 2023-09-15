@@ -1,0 +1,31 @@
+<table>
+    <tr>
+        <td>Id</td>
+        <td>Nom Utilisateur</td>
+        <td>Mail</td>
+        <td>Mot de passe</td>
+        <td>Modifier Utilisateur</td>
+        <td>Supprimer Utilisateur</td>
+    </tr>
+    <tr *ngFor = "let u of listeUtilisateur">
+        <td>{{u.id}}</td>
+        <td>{{u.nomUtilisateur}}</td>
+        <td>{{u.mail}}</td>
+        <td>{{u.mdp}}</td>
+        <td><button (click)="modifierUtilisateur(u)">Modifier Utilisateur</button></td> 
+        <td><button (click)="supprimerUtilisateur(u.id)">Supprimer Utilisateur</button></td> 
+    </tr>
+
+</table>
+<br>
+
+
+<form (ngSubmit)="ajouterUtilisateur()">
+ 
+    Nom Utilisateur : <input type="nomUtilisateur" name="nom" [(ngModel)]="UtilisateurAAjouter.nomUtilisateur">
+    Mail : <input type="text" name="mail" [(ngModel)]="UtilisateurAAjouter.mail">
+    Mot de passe : <input type="text" name="mdp" [(ngModel)]="UtilisateurAAjouter.mdp">
+    <br>
+    <button type="submit">Ajouter/Modifier</button>
+</form>
+
